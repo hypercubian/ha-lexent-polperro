@@ -2,7 +2,11 @@
   <img src="images/logo.png" alt="Lexent" width="200">
 </p>
 
-<h1 align="center">Lexent Polperro for Home Assistant</h1>
+<h1 align="center">Lexent Polperro Integration for Home Assistant</h1>
+
+<p align="center">
+  <img src="images/polperro-white.png" alt="Lexent Polperro 30L — Gloss White" width="200">
+</p>
 
 <p align="center">
   Custom <a href="https://www.home-assistant.io/">Home Assistant</a> integration for local-network control of the <a href="https://www.lexent.co.uk/products/polperro-air-purifier-dehumidifier">Lexent Polperro 30L</a> dehumidifier / air purifier via the Gree WiFi protocol.<br>
@@ -30,10 +34,6 @@
 </p>
 
 ---
-
-<p align="center">
-  <img src="images/polperro-white.jpg" alt="Lexent Polperro 30L — Gloss White" width="300">
-</p>
 
 ## Device
 
