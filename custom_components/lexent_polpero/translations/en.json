@@ -1,0 +1,107 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Lexent Polperro Setup",
+        "description": "Enter the IP address of your Polperro dehumidifier. The device must be on the same local network.",
+        "data": {
+          "host": "IP address"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the device. Check the IP address and ensure the device is powered on."
+    },
+    "abort": {
+      "already_configured": "This device is already configured."
+    }
+  },
+  "entity": {
+    "humidifier": {
+      "dehumidifier": {
+        "name": "Dehumidifier",
+        "state_attributes": {
+          "mode": {
+            "state": {
+              "dehumidify": "Dehumidify",
+              "laundry": "Laundry",
+              "purify": "Purify"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "current_humidity": {
+        "name": "Humidity"
+      },
+      "temperature": {
+        "name": "Temperature"
+      },
+      "pm25_quality": {
+        "name": "PM2.5 quality",
+        "state": {
+          "excellent": "Excellent",
+          "good": "Good",
+          "bad": "Bad"
+        }
+      },
+      "air_quality": {
+        "name": "Air quality",
+        "state": {
+          "excellent": "Excellent",
+          "good": "Good",
+          "bad": "Bad"
+        }
+      },
+      "timer": {
+        "name": "Timer"
+      },
+      "error_code": {
+        "name": "Error code"
+      },
+      "filter_status": {
+        "name": "Filter status"
+      }
+    },
+    "binary_sensor": {
+      "water_full": {
+        "name": "Water full"
+      }
+    },
+    "switch": {
+      "light": {
+        "name": "Display light"
+      },
+      "swing": {
+        "name": "Swing"
+      },
+      "uvc": {
+        "name": "UVC"
+      },
+      "ioniser": {
+        "name": "Ioniser"
+      },
+      "child_lock": {
+        "name": "Child lock"
+      },
+      "quiet": {
+        "name": "Quiet mode"
+      },
+      "turbo": {
+        "name": "Turbo mode"
+      }
+    },
+    "select": {
+      "fan_speed": {
+        "name": "Fan speed",
+        "state": {
+          "auto": "Auto",
+          "low": "Low",
+          "medium": "Medium",
+          "high": "High"
+        }
+      }
+    }
+  }
+}
