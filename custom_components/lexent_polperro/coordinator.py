@@ -8,20 +8,20 @@ from datetime import timedelta
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
-from polpero import DeviceState, PolperoClient  # type: ignore[attr-defined]
+from polperro import DeviceState, PolperroClient  # type: ignore[attr-defined]
 
 from .const import CONF_HOST, CONF_MAC, DEFAULT_SCAN_INTERVAL, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class PolperoCoordinator(DataUpdateCoordinator[DeviceState]):
+class PolperroCoordinator(DataUpdateCoordinator[DeviceState]):
     """Coordinator that polls a Polperro dehumidifier for state updates."""
 
     config_entry: ConfigEntry
 
     def __init__(self, hass: HomeAssistant, entry: ConfigEntry) -> None:
-        self.client = PolperoClient(
+        self.client = PolperroClient(
             host=entry.data[CONF_HOST],
             mac=entry.data.get(CONF_MAC, ""),
         )

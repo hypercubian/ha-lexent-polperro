@@ -5,7 +5,7 @@ from __future__ import annotations
 from unittest.mock import AsyncMock
 
 import pytest
-from polpero import (  # type: ignore[attr-defined]
+from polperro import (  # type: ignore[attr-defined]
     AirQuality,
     DeviceState,
     FanSpeed,
@@ -48,8 +48,8 @@ def mock_device_state() -> DeviceState:
 
 
 @pytest.fixture
-def mock_polpero_client(mock_device_state: DeviceState) -> AsyncMock:
-    """Return a mocked PolperoClient."""
+def mock_polperro_client(mock_device_state: DeviceState) -> AsyncMock:
+    """Return a mocked PolperroClient."""
     client = AsyncMock()
     client.host = "192.168.2.8"
     client.mac = "502cc626e9a5"

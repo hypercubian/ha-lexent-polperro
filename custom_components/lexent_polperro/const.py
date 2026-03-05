@@ -1,6 +1,6 @@
 """Constants for the Lexent Polperro integration."""
 
-DOMAIN = "lexent_polpero"
+DOMAIN = "lexent_polperro"
 
 CONF_HOST = "host"
 CONF_MAC = "mac"

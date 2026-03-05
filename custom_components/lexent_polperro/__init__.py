@@ -9,14 +9,14 @@ from homeassistant.core import HomeAssistant
 from homeassistant.exceptions import ConfigEntryNotReady
 
 from .const import PLATFORMS
-from .coordinator import PolperoCoordinator
+from .coordinator import PolperroCoordinator
 
-PolperoConfigEntry: TypeAlias = ConfigEntry[PolperoCoordinator]
+PolperroConfigEntry: TypeAlias = ConfigEntry[PolperroCoordinator]
 
 
-async def async_setup_entry(hass: HomeAssistant, entry: PolperoConfigEntry) -> bool:
+async def async_setup_entry(hass: HomeAssistant, entry: PolperroConfigEntry) -> bool:
     """Set up Lexent Polperro from a config entry."""
-    coordinator = PolperoCoordinator(hass, entry)
+    coordinator = PolperroCoordinator(hass, entry)
     try:
         await coordinator.async_config_entry_first_refresh()
     except Exception as err:
@@ -29,7 +29,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: PolperoConfigEntry) -> b
     return True
 
 
-async def async_unload_entry(hass: HomeAssistant, entry: PolperoConfigEntry) -> bool:
+async def async_unload_entry(hass: HomeAssistant, entry: PolperroConfigEntry) -> bool:
     """Unload a Lexent Polperro config entry."""
     unload_ok = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unload_ok:

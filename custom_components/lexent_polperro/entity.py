@@ -6,15 +6,15 @@ from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
-from .coordinator import PolperoCoordinator
+from .coordinator import PolperroCoordinator
 
 
-class PolperoEntity(CoordinatorEntity[PolperoCoordinator]):
+class PolperroEntity(CoordinatorEntity[PolperroCoordinator]):
     """Base class for all Polperro entities."""
 
     _attr_has_entity_name = True
 
-    def __init__(self, coordinator: PolperoCoordinator, key: str) -> None:
+    def __init__(self, coordinator: PolperroCoordinator, key: str) -> None:
         super().__init__(coordinator)
         mac = coordinator.client.mac
         self._attr_unique_id = f"{mac}_{key}"

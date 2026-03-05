@@ -15,11 +15,11 @@ from homeassistant.components.sensor import (
 from homeassistant.const import EntityCategory, UnitOfTemperature, UnitOfTime
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from polpero import AirQuality  # type: ignore[attr-defined]
+from polperro import AirQuality  # type: ignore[attr-defined]
 
-from . import PolperoConfigEntry
-from .coordinator import PolperoCoordinator
-from .entity import PolperoEntity
+from . import PolperroConfigEntry
+from .coordinator import PolperroCoordinator
+from .entity import PolperroEntity
 
 _QUALITY_MAP: dict[AirQuality, str] = {
     AirQuality.EXCELLENT: "excellent",
@@ -29,14 +29,14 @@ _QUALITY_MAP: dict[AirQuality, str] = {
 
 
 @dataclass(frozen=True, kw_only=True)
-class PolperoSensorDescription(SensorEntityDescription):
+class PolperroSensorDescription(SensorEntityDescription):
     """Describe a Polperro sensor entity."""
 
     value_fn: str | Callable[[Any], Any]
 
 
-SENSORS: tuple[PolperoSensorDescription, ...] = (
-    PolperoSensorDescription(
+SENSORS: tuple[PolperroSensorDescription, ...] = (
+    PolperroSensorDescription(
         key="current_humidity",
         translation_key="current_humidity",
         device_class=SensorDeviceClass.HUMIDITY,
@@ -44,7 +44,7 @@ SENSORS: tuple[PolperoSensorDescription, ...] = (
         native_unit_of_measurement="%",
         value_fn="current_humidity",
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="temperature",
         translation_key="temperature",
         device_class=SensorDeviceClass.TEMPERATURE,
@@ -52,7 +52,7 @@ SENSORS: tuple[PolperoSensorDescription, ...] = (
         native_unit_of_measurement=UnitOfTemperature.CELSIUS,
         value_fn="temperature",
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="pm25_quality",
         translation_key="pm25_quality",
         device_class=SensorDeviceClass.ENUM,
@@ -60,7 +60,7 @@ SENSORS: tuple[PolperoSensorDescription, ...] = (
         icon="mdi:blur",
         value_fn=lambda s: _QUALITY_MAP.get(s.pm25),
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="air_quality",
         translation_key="air_quality",
         device_class=SensorDeviceClass.ENUM,
@@ -68,21 +68,21 @@ SENSORS: tuple[PolperoSensorDescription, ...] = (
         icon="mdi:air-filter",
         value_fn=lambda s: _QUALITY_MAP.get(s.air_quality),
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="timer",
         translation_key="timer",
         icon="mdi:timer",
         native_unit_of_measurement=UnitOfTime.HOURS,
         value_fn="timer",
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="error_code",
         translation_key="error_code",
         icon="mdi:alert-circle",
         entity_category=EntityCategory.DIAGNOSTIC,
         value_fn="error_code",
     ),
-    PolperoSensorDescription(
+    PolperroSensorDescription(
         key="filter_status",
         translation_key="filter_status",
         icon="mdi:air-filter",
@@ -94,23 +94,23 @@ SENSORS: tuple[PolperoSensorDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: PolperoConfigEntry,
+    entry: PolperroConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up Polperro sensor entities."""
     coordinator = entry.runtime_data
-    async_add_entities(PolperoSensor(coordinator, desc) for desc in SENSORS)
+    async_add_entities(PolperroSensor(coordinator, desc) for desc in SENSORS)
 
 
-class PolperoSensor(PolperoEntity, SensorEntity):
+class PolperroSensor(PolperroEntity, SensorEntity):
     """Representation of a Polperro sensor."""
 
-    entity_description: PolperoSensorDescription
+    entity_description: PolperroSensorDescription
 
     def __init__(
         self,
-        coordinator: PolperoCoordinator,
-        description: PolperoSensorDescription,
+        coordinator: PolperroCoordinator,
+        description: PolperroSensorDescription,
     ) -> None:
         super().__init__(coordinator, description.key)
         self.entity_description = description

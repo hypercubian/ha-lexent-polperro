@@ -1,14 +1,14 @@
 {
-  "domain": "lexent_polpero",
+  "domain": "lexent_polperro",
   "name": "Lexent Polperro",
   "codeowners": ["@hypercubian"],
   "config_flow": true,
-  "documentation": "https://github.com/hypercubian/ha-lexent-polpero",
+  "documentation": "https://github.com/hypercubian/ha-lexent-polperro",
   "homeassistant": "2024.8.0",
   "integration_type": "device",
   "iot_class": "local_polling",
   "requirements": [
-    "polpero @ git+https://github.com/hypercubian/lexent-polpero-py.git@v0.1.0"
+    "polperro @ git+https://github.com/hypercubian/lexent-polperro-py.git@v0.1.0"
   ],
   "version": "0.1.0"
 }

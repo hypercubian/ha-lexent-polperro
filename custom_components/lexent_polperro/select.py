@@ -7,11 +7,11 @@ from dataclasses import dataclass
 from homeassistant.components.select import SelectEntity, SelectEntityDescription
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from polpero import FanSpeed  # type: ignore[attr-defined]
+from polperro import FanSpeed  # type: ignore[attr-defined]
 
-from . import PolperoConfigEntry
-from .coordinator import PolperoCoordinator
-from .entity import PolperoEntity
+from . import PolperroConfigEntry
+from .coordinator import PolperroCoordinator
+from .entity import PolperroEntity
 
 FAN_SPEED_MAP: dict[str, FanSpeed] = {
     "auto": FanSpeed.AUTO,
@@ -24,15 +24,15 @@ FAN_SPEED_REVERSE: dict[FanSpeed, str] = {v: k for k, v in FAN_SPEED_MAP.items()
 
 
 @dataclass(frozen=True, kw_only=True)
-class PolperoSelectDescription(SelectEntityDescription):
+class PolperroSelectDescription(SelectEntityDescription):
     """Describe a Polperro select entity."""
 
     value_fn: str
     set_fn: str
 
 
-SELECTS: tuple[PolperoSelectDescription, ...] = (
-    PolperoSelectDescription(
+SELECTS: tuple[PolperroSelectDescription, ...] = (
+    PolperroSelectDescription(
         key="fan_speed",
         translation_key="fan_speed",
         icon="mdi:fan",
@@ -45,23 +45,23 @@ SELECTS: tuple[PolperoSelectDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: PolperoConfigEntry,
+    entry: PolperroConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up Polperro select entities."""
     coordinator = entry.runtime_data
-    async_add_entities(PolperoSelect(coordinator, desc) for desc in SELECTS)
+    async_add_entities(PolperroSelect(coordinator, desc) for desc in SELECTS)
 
 
-class PolperoSelect(PolperoEntity, SelectEntity):
+class PolperroSelect(PolperroEntity, SelectEntity):
     """Representation of a Polperro select."""
 
-    entity_description: PolperoSelectDescription
+    entity_description: PolperroSelectDescription
 
     def __init__(
         self,
-        coordinator: PolperoCoordinator,
-        description: PolperoSelectDescription,
+        coordinator: PolperroCoordinator,
+        description: PolperroSelectDescription,
     ) -> None:
         super().__init__(coordinator, description.key)
         self.entity_description = description

@@ -7,14 +7,14 @@ from typing import Any
 
 import voluptuous as vol
 from homeassistant.config_entries import ConfigFlow, ConfigFlowResult
-from polpero import PolperoClient  # type: ignore[attr-defined]
+from polperro import PolperroClient  # type: ignore[attr-defined]
 
 from .const import CONF_HOST, CONF_MAC, DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class PolperoConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
+class PolperroConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
     """Handle a config flow for Lexent Polperro."""
 
     VERSION = 1
@@ -27,7 +27,7 @@ class PolperoConfigFlow(ConfigFlow, domain=DOMAIN):  # type: ignore[call-arg]
 
         if user_input is not None:
             host = user_input[CONF_HOST]
-            client = PolperoClient(host=host)
+            client = PolperroClient(host=host)
 
             try:
                 await client.connect()

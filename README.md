@@ -17,21 +17,21 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/hypercubian/ha-lexent-polpero/releases"><img src="https://img.shields.io/github/v/release/hypercubian/ha-lexent-polpero?filter=*&style=for-the-badge" alt="Release"></a>
-  <a href="https://github.com/hypercubian/ha-lexent-polpero/releases"><img src="https://img.shields.io/github/downloads/hypercubian/ha-lexent-polpero/total?style=for-the-badge" alt="Downloads"></a>
-  <a href="https://github.com/hypercubian/ha-lexent-polpero/stargazers"><img src="https://img.shields.io/github/stars/hypercubian/ha-lexent-polpero?style=for-the-badge" alt="Stars"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/hypercubian/ha-lexent-polpero?style=for-the-badge&cacheSeconds=0" alt="License"></a>
+  <a href="https://github.com/hypercubian/ha-lexent-polperro/releases"><img src="https://img.shields.io/github/v/release/hypercubian/ha-lexent-polperro?filter=*&style=for-the-badge" alt="Release"></a>
+  <a href="https://github.com/hypercubian/ha-lexent-polperro/releases"><img src="https://img.shields.io/github/downloads/hypercubian/ha-lexent-polperro/total?style=for-the-badge" alt="Downloads"></a>
+  <a href="https://github.com/hypercubian/ha-lexent-polperro/stargazers"><img src="https://img.shields.io/github/stars/hypercubian/ha-lexent-polperro?style=for-the-badge" alt="Stars"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/hypercubian/ha-lexent-polperro?style=for-the-badge&cacheSeconds=0" alt="License"></a>
 </p>
 <p align="center">
   <a href="https://hacs.xyz/"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge" alt="HACS Custom"></a>
   <img src="https://img.shields.io/badge/HA-%3E%3D%202024.8-41BDF5?style=for-the-badge" alt="Home Assistant 2024.8+">
-  <a href="https://github.com/hypercubian/ha-lexent-polpero/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/hypercubian/ha-lexent-polpero/ci.yml?branch=master&style=for-the-badge&label=CI" alt="CI"></a>
+  <a href="https://github.com/hypercubian/ha-lexent-polperro/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/hypercubian/ha-lexent-polperro/ci.yml?branch=master&style=for-the-badge&label=CI" alt="CI"></a>
   <a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000?style=for-the-badge" alt="Code style: black"></a>
   <a href="https://mypy-lang.org/"><img src="https://img.shields.io/badge/type%20checked-mypy-blue?style=for-the-badge" alt="Type checked: mypy"></a>
 </p>
 
 <p align="center">
-  <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=hypercubian&repository=ha-lexent-polpero&category=integration">
+  <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=hypercubian&repository=ha-lexent-polperro&category=integration">
     <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.">
   </a>
 </p>
@@ -55,13 +55,13 @@
 
 1. Open HACS in your Home Assistant instance
 2. Go to **Integrations** > three-dot menu > **Custom repositories**
-3. Add `https://github.com/hypercubian/ha-lexent-polpero` with category **Integration**
+3. Add `https://github.com/hypercubian/ha-lexent-polperro` with category **Integration**
 4. Search for "Lexent Polperro" and install
 5. Restart Home Assistant
 
 ### Manual
 
-1. Copy the `custom_components/lexent_polpero` directory into your Home Assistant `config/custom_components/` folder
+1. Copy the `custom_components/lexent_polperro` directory into your Home Assistant `config/custom_components/` folder
 2. Restart Home Assistant
 
 ## Configuration
@@ -108,10 +108,10 @@ The integration validates connectivity by connecting to the device, reading its 
 
 ## Technical Details
 
-- **Communication:** Gree WiFi protocol via [polpero](https://github.com/hypercubian/lexent-polpero-py) — local UDP, AES-128-ECB encrypted
+- **Communication:** Gree WiFi protocol via [polperro](https://github.com/hypercubian/lexent-polperro-py) — local UDP, AES-128-ECB encrypted
 - **Connection:** Bind handshake on connect, automatic reconnection on errors
 - **Polling:** 30-second update interval via `DataUpdateCoordinator`
-- **Library:** [lexent-polpero-py](https://github.com/hypercubian/lexent-polpero-py) — async Python client for the Polperro dehumidifier
+- **Library:** [lexent-polperro-py](https://github.com/hypercubian/lexent-polperro-py) — async Python client for the Polperro dehumidifier
 
 ## Contributing
 

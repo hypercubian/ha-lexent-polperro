@@ -6,15 +6,15 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from custom_components.lexent_polpero.const import CONF_HOST, CONF_MAC
-from custom_components.lexent_polpero.coordinator import PolperoCoordinator
-from custom_components.lexent_polpero.switch import SWITCHES, PolperoSwitch, async_setup_entry
+from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC
+from custom_components.lexent_polperro.coordinator import PolperroCoordinator
+from custom_components.lexent_polperro.switch import SWITCHES, PolperroSwitch, async_setup_entry
 from tests.conftest import _make_device_state
 
 
 def _make_coordinator(
     mock_client: MagicMock | None = None,
-) -> PolperoCoordinator:
+) -> PolperroCoordinator:
     hass = MagicMock()
     entry = MagicMock()
     entry.data = {CONF_HOST: "192.168.2.8", CONF_MAC: "502cc626e9a5"}
@@ -25,10 +25,10 @@ def _make_coordinator(
     client.mac = "502cc626e9a5"
 
     with patch(
-        "custom_components.lexent_polpero.coordinator.PolperoClient",
+        "custom_components.lexent_polperro.coordinator.PolperroClient",
         return_value=client,
     ):
-        return PolperoCoordinator(hass, entry)
+        return PolperroCoordinator(hass, entry)
 
 
 def _get_desc(key: str):
@@ -36,36 +36,36 @@ def _get_desc(key: str):
 
 
 class TestSwitchIsOn:
-    """Tests for PolperoSwitch.is_on."""
+    """Tests for PolperroSwitch.is_on."""
 
     def test_light_on(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(light=True)
-        entity = PolperoSwitch(coordinator, _get_desc("light"))
+        entity = PolperroSwitch(coordinator, _get_desc("light"))
         assert entity.is_on is True
 
     def test_light_off(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(light=False)
-        entity = PolperoSwitch(coordinator, _get_desc("light"))
+        entity = PolperroSwitch(coordinator, _get_desc("light"))
         assert entity.is_on is False
 
     def test_uvc_reads_uvc_enabled(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(uvc_enabled=True)
-        entity = PolperoSwitch(coordinator, _get_desc("uvc"))
+        entity = PolperroSwitch(coordinator, _get_desc("uvc"))
         assert entity.is_on is True
 
     def test_ioniser_reads_ioniser_enabled(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(ioniser_enabled=True)
-        entity = PolperoSwitch(coordinator, _get_desc("ioniser"))
+        entity = PolperroSwitch(coordinator, _get_desc("ioniser"))
         assert entity.is_on is True
 
     def test_none_when_no_data(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = None
-        entity = PolperoSwitch(coordinator, _get_desc("light"))
+        entity = PolperroSwitch(coordinator, _get_desc("light"))
         assert entity.is_on is None
 
 
@@ -80,7 +80,7 @@ class TestSwitchCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoSwitch(coordinator, _get_desc("light"))
+        entity = PolperroSwitch(coordinator, _get_desc("light"))
 
         await entity.async_turn_on()
 
@@ -95,7 +95,7 @@ class TestSwitchCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoSwitch(coordinator, _get_desc("swing"))
+        entity = PolperroSwitch(coordinator, _get_desc("swing"))
 
         await entity.async_turn_off()
 
@@ -110,7 +110,7 @@ class TestSwitchCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoSwitch(coordinator, _get_desc("quiet"))
+        entity = PolperroSwitch(coordinator, _get_desc("quiet"))
 
         await entity.async_turn_on()
 
@@ -124,7 +124,7 @@ class TestSwitchCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoSwitch(coordinator, _get_desc("turbo"))
+        entity = PolperroSwitch(coordinator, _get_desc("turbo"))
 
         await entity.async_turn_on()
 
@@ -144,4 +144,4 @@ class TestSwitchSetupEntry:
         await async_setup_entry(MagicMock(), entry, added.extend)
 
         assert len(added) == 7
-        assert all(isinstance(e, PolperoSwitch) for e in added)
+        assert all(isinstance(e, PolperroSwitch) for e in added)

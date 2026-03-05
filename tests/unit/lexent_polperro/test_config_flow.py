@@ -7,16 +7,16 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.data_entry_flow import AbortFlow
 
-from custom_components.lexent_polpero.config_flow import PolperoConfigFlow
-from custom_components.lexent_polpero.const import CONF_HOST, CONF_MAC, DOMAIN
+from custom_components.lexent_polperro.config_flow import PolperroConfigFlow
+from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC, DOMAIN
 
 
 class TestConfigFlowUserStep:
     """Tests for the user step."""
 
-    def _make_flow(self) -> PolperoConfigFlow:
+    def _make_flow(self) -> PolperroConfigFlow:
         """Create a config flow instance with mocked hass."""
-        flow = PolperoConfigFlow()
+        flow = PolperroConfigFlow()
         flow.hass = MagicMock()
         return flow
 
@@ -43,7 +43,7 @@ class TestConfigFlowUserStep:
         mock_client.disconnect = AsyncMock()
 
         with patch(
-            "custom_components.lexent_polpero.config_flow.PolperoClient",
+            "custom_components.lexent_polperro.config_flow.PolperroClient",
             return_value=mock_client,
         ):
             result = await flow.async_step_user({CONF_HOST: "192.168.2.8"})
@@ -67,7 +67,7 @@ class TestConfigFlowUserStep:
         mock_client.connect = AsyncMock(side_effect=Exception("timeout"))
 
         with patch(
-            "custom_components.lexent_polpero.config_flow.PolperoClient",
+            "custom_components.lexent_polperro.config_flow.PolperroClient",
             return_value=mock_client,
         ):
             result = await flow.async_step_user({CONF_HOST: "192.168.2.99"})
@@ -92,7 +92,7 @@ class TestConfigFlowUserStep:
 
         with (
             patch(
-                "custom_components.lexent_polpero.config_flow.PolperoClient",
+                "custom_components.lexent_polperro.config_flow.PolperroClient",
                 return_value=mock_client,
             ),
             pytest.raises(AbortFlow, match="already_configured"),
@@ -112,7 +112,7 @@ class TestConfigFlowUserStep:
         mock_bad.connect = AsyncMock(side_effect=Exception("timeout"))
 
         with patch(
-            "custom_components.lexent_polpero.config_flow.PolperoClient",
+            "custom_components.lexent_polperro.config_flow.PolperroClient",
             return_value=mock_bad,
         ):
             result = await flow.async_step_user({CONF_HOST: "192.168.2.99"})
@@ -126,7 +126,7 @@ class TestConfigFlowUserStep:
         mock_good.disconnect = AsyncMock()
 
         with patch(
-            "custom_components.lexent_polpero.config_flow.PolperoClient",
+            "custom_components.lexent_polperro.config_flow.PolperroClient",
             return_value=mock_good,
         ):
             await flow.async_step_user({CONF_HOST: "192.168.2.8"})

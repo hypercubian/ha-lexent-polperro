@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from custom_components.lexent_polpero.binary_sensor import BINARY_SENSORS
-from custom_components.lexent_polpero.select import SELECTS
-from custom_components.lexent_polpero.sensor import SENSORS
-from custom_components.lexent_polpero.switch import SWITCHES
+from custom_components.lexent_polperro.binary_sensor import BINARY_SENSORS
+from custom_components.lexent_polperro.select import SELECTS
+from custom_components.lexent_polperro.sensor import SENSORS
+from custom_components.lexent_polperro.switch import SWITCHES
 
 
 class TestEntityCounts:

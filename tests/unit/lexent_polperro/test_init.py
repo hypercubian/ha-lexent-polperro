@@ -7,8 +7,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.exceptions import ConfigEntryNotReady
 
-from custom_components.lexent_polpero import async_setup_entry, async_unload_entry
-from custom_components.lexent_polpero.const import CONF_HOST, CONF_MAC, PLATFORMS
+from custom_components.lexent_polperro import async_setup_entry, async_unload_entry
+from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC, PLATFORMS
 
 
 def _make_entry() -> MagicMock:
@@ -35,7 +35,7 @@ class TestAsyncSetupEntry:
         mock_coordinator.async_shutdown = AsyncMock()
 
         with patch(
-            "custom_components.lexent_polpero.PolperoCoordinator",
+            "custom_components.lexent_polperro.PolperroCoordinator",
             return_value=mock_coordinator,
         ):
             result = await async_setup_entry(hass, entry)
@@ -61,7 +61,7 @@ class TestAsyncSetupEntry:
 
         with (
             patch(
-                "custom_components.lexent_polpero.PolperoCoordinator",
+                "custom_components.lexent_polperro.PolperroCoordinator",
                 return_value=mock_coordinator,
             ),
             pytest.raises(ConfigEntryNotReady, match="Unable to connect"),

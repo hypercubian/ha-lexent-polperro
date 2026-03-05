@@ -5,14 +5,14 @@ from __future__ import annotations
 from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
-from polpero import FanSpeed, Mode  # type: ignore[attr-defined]
+from polperro import FanSpeed, Mode  # type: ignore[attr-defined]
 
-from custom_components.lexent_polpero.const import CONF_HOST, CONF_MAC
-from custom_components.lexent_polpero.coordinator import PolperoCoordinator
-from custom_components.lexent_polpero.humidifier import (
+from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC
+from custom_components.lexent_polperro.coordinator import PolperroCoordinator
+from custom_components.lexent_polperro.humidifier import (
     MODE_MAP,
     MODE_REVERSE,
-    PolperoHumidifier,
+    PolperroHumidifier,
     async_setup_entry,
 )
 from tests.conftest import _make_device_state
@@ -20,7 +20,7 @@ from tests.conftest import _make_device_state
 
 def _make_coordinator(
     mock_client: MagicMock | None = None,
-) -> PolperoCoordinator:
+) -> PolperroCoordinator:
     hass = MagicMock()
     entry = MagicMock()
     entry.data = {CONF_HOST: "192.168.2.8", CONF_MAC: "502cc626e9a5"}
@@ -31,10 +31,10 @@ def _make_coordinator(
     client.mac = "502cc626e9a5"
 
     with patch(
-        "custom_components.lexent_polpero.coordinator.PolperoClient",
+        "custom_components.lexent_polperro.coordinator.PolperroClient",
         return_value=client,
     ):
-        return PolperoCoordinator(hass, entry)
+        return PolperroCoordinator(hass, entry)
 
 
 class TestModeMapping:
@@ -48,77 +48,77 @@ class TestModeMapping:
             assert MODE_REVERSE[enum_val] == name
 
 
-class TestPolperoHumidifierProperties:
+class TestPolperroHumidifierProperties:
     """Tests for humidifier entity properties."""
 
     def test_is_on_true(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(power=True)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.is_on is True
 
     def test_is_on_false(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(power=False)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.is_on is False
 
     def test_is_on_none_when_no_data(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = None
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.is_on is None
 
     def test_mode_dehumidify(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(mode=Mode.DEHUMIDIFY)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.mode == "dehumidify"
 
     def test_mode_laundry(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(mode=Mode.LAUNDRY)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.mode == "laundry"
 
     def test_mode_purify(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(mode=Mode.PURIFY)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.mode == "purify"
 
     def test_mode_none_when_no_data(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = None
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.mode is None
 
     def test_target_humidity(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(target_humidity=55)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.target_humidity == 55
 
     def test_target_humidity_none_when_no_data(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = None
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.target_humidity is None
 
     def test_current_humidity(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = _make_device_state(current_humidity=72)
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.current_humidity == 72
 
     def test_current_humidity_none_when_no_data(self) -> None:
         coordinator = _make_coordinator()
         coordinator.data = None
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
         assert entity.current_humidity is None
 
 
-class TestPolperoHumidifierCommands:
+class TestPolperroHumidifierCommands:
     """Tests for humidifier entity async commands."""
 
     @pytest.mark.asyncio
@@ -129,7 +129,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_turn_on()
 
@@ -144,7 +144,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_turn_off()
 
@@ -159,7 +159,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_humidity(53)
         mock_client.set_target_humidity.assert_called_with(55)
@@ -172,7 +172,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_humidity(52)
         mock_client.set_target_humidity.assert_called_with(50)
@@ -185,7 +185,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_humidity(10)
         mock_client.set_target_humidity.assert_called_with(30)
@@ -198,7 +198,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_humidity(99)
         mock_client.set_target_humidity.assert_called_with(80)
@@ -211,7 +211,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_mode("laundry")
 
@@ -226,7 +226,7 @@ class TestPolperoHumidifierCommands:
 
         coordinator = _make_coordinator(mock_client)
         coordinator.async_request_refresh = AsyncMock()
-        entity = PolperoHumidifier(coordinator)
+        entity = PolperroHumidifier(coordinator)
 
         await entity.async_set_mode("nonexistent")
 
@@ -247,4 +247,4 @@ class TestAsyncSetupEntry:
         await async_setup_entry(MagicMock(), entry, added.extend)
 
         assert len(added) == 1
-        assert isinstance(added[0], PolperoHumidifier)
+        assert isinstance(added[0], PolperroHumidifier)

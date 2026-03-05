@@ -12,20 +12,20 @@ from homeassistant.components.binary_sensor import (
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from . import PolperoConfigEntry
-from .coordinator import PolperoCoordinator
-from .entity import PolperoEntity
+from . import PolperroConfigEntry
+from .coordinator import PolperroCoordinator
+from .entity import PolperroEntity
 
 
 @dataclass(frozen=True, kw_only=True)
-class PolperoBinarySensorDescription(BinarySensorEntityDescription):
+class PolperroBinarySensorDescription(BinarySensorEntityDescription):
     """Describe a Polperro binary sensor entity."""
 
     value_fn: str
 
 
-BINARY_SENSORS: tuple[PolperoBinarySensorDescription, ...] = (
-    PolperoBinarySensorDescription(
+BINARY_SENSORS: tuple[PolperroBinarySensorDescription, ...] = (
+    PolperroBinarySensorDescription(
         key="water_full",
         translation_key="water_full",
         device_class=BinarySensorDeviceClass.PROBLEM,
@@ -37,25 +37,25 @@ BINARY_SENSORS: tuple[PolperoBinarySensorDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: PolperoConfigEntry,
+    entry: PolperroConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up Polperro binary sensor entities."""
     coordinator = entry.runtime_data
     async_add_entities(
-        PolperoBinarySensor(coordinator, desc) for desc in BINARY_SENSORS
+        PolperroBinarySensor(coordinator, desc) for desc in BINARY_SENSORS
     )
 
 
-class PolperoBinarySensor(PolperoEntity, BinarySensorEntity):
+class PolperroBinarySensor(PolperroEntity, BinarySensorEntity):
     """Representation of a Polperro binary sensor."""
 
-    entity_description: PolperoBinarySensorDescription
+    entity_description: PolperroBinarySensorDescription
 
     def __init__(
         self,
-        coordinator: PolperoCoordinator,
-        description: PolperoBinarySensorDescription,
+        coordinator: PolperroCoordinator,
+        description: PolperroBinarySensorDescription,
     ) -> None:
         super().__init__(coordinator, description.key)
         self.entity_description = description

@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ha-lexent-polpero"
+name = "ha-lexent-polperro"
 version = "0.1.0"
 description = "Home Assistant HACS integration for the Lexent Polperro 30L dehumidifier"
 license = "MIT"
@@ -8,7 +8,7 @@ packages = [{include = "custom_components"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
-polpero = {git = "https://github.com/hypercubian/lexent-polpero-py.git", tag = "v0.1.0"}
+polperro = {git = "https://github.com/hypercubian/lexent-polperro-py.git", tag = "v0.1.0"}
 
 [tool.poetry.group.dev.dependencies]
 pytest = "*"
@@ -52,13 +52,13 @@ module = [
 ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
-module = ["polpero", "polpero.*"]
+module = ["polperro", "polperro.*"]
 ignore_missing_imports = true
 follow_imports = "skip"
 
 [tool.isort]
 profile = "black"
-known_third_party = ["polpero", "homeassistant", "voluptuous"]
+known_third_party = ["polperro", "homeassistant", "voluptuous"]
 
 [tool.bandit]
 exclude_dirs = ["tests"]

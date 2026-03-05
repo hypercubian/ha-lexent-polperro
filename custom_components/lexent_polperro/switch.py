@@ -9,63 +9,63 @@ from homeassistant.components.switch import SwitchEntity, SwitchEntityDescriptio
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
-from . import PolperoConfigEntry
-from .coordinator import PolperoCoordinator
-from .entity import PolperoEntity
+from . import PolperroConfigEntry
+from .coordinator import PolperroCoordinator
+from .entity import PolperroEntity
 
 
 @dataclass(frozen=True, kw_only=True)
-class PolperoSwitchDescription(SwitchEntityDescription):
+class PolperroSwitchDescription(SwitchEntityDescription):
     """Describe a Polperro switch entity."""
 
     value_fn: str
     set_fn: str
 
 
-SWITCHES: tuple[PolperoSwitchDescription, ...] = (
-    PolperoSwitchDescription(
+SWITCHES: tuple[PolperroSwitchDescription, ...] = (
+    PolperroSwitchDescription(
         key="light",
         translation_key="light",
         icon="mdi:lightbulb",
         value_fn="light",
         set_fn="set_light",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="swing",
         translation_key="swing",
         icon="mdi:arrow-up-down",
         value_fn="swing",
         set_fn="set_swing",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="uvc",
         translation_key="uvc",
         icon="mdi:lightbulb-fluorescent-tube",
         value_fn="uvc_enabled",
         set_fn="set_uvc",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="ioniser",
         translation_key="ioniser",
         icon="mdi:atom",
         value_fn="ioniser_enabled",
         set_fn="set_ioniser",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="child_lock",
         translation_key="child_lock",
         icon="mdi:lock",
         value_fn="child_lock",
         set_fn="set_child_lock",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="quiet",
         translation_key="quiet",
         icon="mdi:volume-off",
         value_fn="quiet",
         set_fn="set_quiet",
     ),
-    PolperoSwitchDescription(
+    PolperroSwitchDescription(
         key="turbo",
         translation_key="turbo",
         icon="mdi:fan-plus",
@@ -77,23 +77,23 @@ SWITCHES: tuple[PolperoSwitchDescription, ...] = (
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: PolperoConfigEntry,
+    entry: PolperroConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up Polperro switch entities."""
     coordinator = entry.runtime_data
-    async_add_entities(PolperoSwitch(coordinator, desc) for desc in SWITCHES)
+    async_add_entities(PolperroSwitch(coordinator, desc) for desc in SWITCHES)
 
 
-class PolperoSwitch(PolperoEntity, SwitchEntity):
+class PolperroSwitch(PolperroEntity, SwitchEntity):
     """Representation of a Polperro switch."""
 
-    entity_description: PolperoSwitchDescription
+    entity_description: PolperroSwitchDescription
 
     def __init__(
         self,
-        coordinator: PolperoCoordinator,
-        description: PolperoSwitchDescription,
+        coordinator: PolperroCoordinator,
+        description: PolperroSwitchDescription,
     ) -> None:
         super().__init__(coordinator, description.key)
         self.entity_description = description

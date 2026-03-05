@@ -7,24 +7,24 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from homeassistant.helpers.update_coordinator import UpdateFailed
 
-from custom_components.lexent_polpero.const import CONF_HOST, CONF_MAC
-from custom_components.lexent_polpero.coordinator import PolperoCoordinator
+from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC
+from custom_components.lexent_polperro.coordinator import PolperroCoordinator
 from tests.conftest import _make_device_state
 
 
 def _make_coordinator(
     mock_client: MagicMock | None = None,
-) -> PolperoCoordinator:
+) -> PolperroCoordinator:
     hass = MagicMock()
     entry = MagicMock()
     entry.data = {CONF_HOST: "192.168.2.8", CONF_MAC: "502cc626e9a5"}
     entry.unique_id = "502cc626e9a5"
 
     with patch(
-        "custom_components.lexent_polpero.coordinator.PolperoClient",
+        "custom_components.lexent_polperro.coordinator.PolperroClient",
         return_value=mock_client or MagicMock(),
     ):
-        return PolperoCoordinator(hass, entry)
+        return PolperroCoordinator(hass, entry)
 
 
 class TestAsyncUpdateData:

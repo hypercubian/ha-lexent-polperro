@@ -12,11 +12,11 @@ from homeassistant.components.humidifier import (
 )
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from polpero import Mode  # type: ignore[attr-defined]
+from polperro import Mode  # type: ignore[attr-defined]
 
-from . import PolperoConfigEntry
-from .coordinator import PolperoCoordinator
-from .entity import PolperoEntity
+from . import PolperroConfigEntry
+from .coordinator import PolperroCoordinator
+from .entity import PolperroEntity
 
 MODE_MAP: dict[str, Mode] = {
     "dehumidify": Mode.DEHUMIDIFY,
@@ -34,15 +34,15 @@ HUMIDIFIER_DESCRIPTION = HumidifierEntityDescription(
 
 async def async_setup_entry(
     hass: HomeAssistant,
-    entry: PolperoConfigEntry,
+    entry: PolperroConfigEntry,
     async_add_entities: AddEntitiesCallback,
 ) -> None:
     """Set up the Polperro humidifier entity."""
     coordinator = entry.runtime_data
-    async_add_entities([PolperoHumidifier(coordinator)])
+    async_add_entities([PolperroHumidifier(coordinator)])
 
 
-class PolperoHumidifier(PolperoEntity, HumidifierEntity):
+class PolperroHumidifier(PolperroEntity, HumidifierEntity):
     """Representation of the Polperro dehumidifier."""
 
     entity_description = HUMIDIFIER_DESCRIPTION
@@ -52,7 +52,7 @@ class PolperoHumidifier(PolperoEntity, HumidifierEntity):
     _attr_max_humidity = 80
     _attr_supported_features = HumidifierEntityFeature.MODES
 
-    def __init__(self, coordinator: PolperoCoordinator) -> None:
+    def __init__(self, coordinator: PolperroCoordinator) -> None:
         super().__init__(coordinator, HUMIDIFIER_DESCRIPTION.key)
         self.entity_description = HUMIDIFIER_DESCRIPTION
 
