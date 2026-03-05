@@ -37,7 +37,7 @@
 </p>
 
 <p align="right">
-  <a href="https://github.com/hypercubian"><img src="images/hypercubian.png" height="80" alt="by Hypercubian"></a>
+  <a href="https://github.com/hypercubian"><img src="images/hypercubian.png" height="120" alt="by Hypercubian"></a>
 </p>
 
 ---
