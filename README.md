@@ -31,7 +31,8 @@
 </p>
 
 <br>
-
+<br>
+<br>
 <p align="center">
   <a href="https://my.home-assistant.io/redirect/hacs_repository/?owner=hypercubian&repository=ha-lexent-polperro&category=integration">
     <img src="https://my.home-assistant.io/badges/hacs_repository.svg" alt="Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.">
@@ -39,20 +40,23 @@
 </p>
 
 <br>
+<br>
+<br>
 
 <p align="right">
-  <a href="https://github.com/hypercubian"><img src="images/hypercubian.png" height="120" alt="by Hypercubian"></a>
+  <a href="https://github.com/hypercubian"><img src="images/hypercubian.png" height="60" alt="by Hypercubian"></a>
 </p>
+
 ---
 
 ## Device
 
-| Feature | Detail |
-|---------|--------|
-| **Product** | Lexent Polperro 30L Dehumidifier / Air Purifier |
-| **Model** | Gree 13805 (LT-GDN30W) |
+| Feature | Detail                                                    |
+|---------|-----------------------------------------------------------|
+| **Product** | Lexent Polperro 30L Dehumidifier / Air Purifier          |
+| **Model** | Gree 13805 (LT-GDN30W)                                    |
 | **Protocol** | Gree WiFi - AES-128-ECB encrypted JSON over UDP port 7000 |
-| **Connectivity** | Local network only, no cloud |
+| **Connectivity** | Local network only, no cloud                              |
 
 ## Installation
 
