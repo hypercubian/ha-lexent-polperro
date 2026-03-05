@@ -8,12 +8,12 @@
 </h1>
 
 <p align="center">
-  <img src="images/polperro-white.png" alt="Lexent Polperro 30L — Gloss White" width="200">
+  <img src="images/polperro-white.png" alt="Lexent Polperro 30L - Gloss White" width="200">
 </p>
 
 <p align="center">
   Custom <a href="https://www.home-assistant.io/">Home Assistant</a> integration for local-network control of the <a href="https://www.lexent.co.uk/products/polperro-air-purifier-dehumidifier">Lexent Polperro 30L</a> dehumidifier / air purifier via the Gree WiFi protocol.<br>
-  No cloud dependency — all communication stays on your LAN.
+  No cloud dependency - all communication stays on your LAN.
 </p>
 
 <p align="center">
@@ -36,6 +36,10 @@
   </a>
 </p>
 
+<p align="right">
+  <a href="https://github.com/hypercubian"><img src="images/hypercubian.png" height="32" alt="by Hypercubian"></a>
+</p>
+
 ---
 
 ## Device
@@ -44,7 +48,7 @@
 |---------|--------|
 | **Product** | Lexent Polperro 30L Dehumidifier / Air Purifier |
 | **Model** | Gree 13805 (LT-GDN30W) |
-| **Protocol** | Gree WiFi — AES-128-ECB encrypted JSON over UDP port 7000 |
+| **Protocol** | Gree WiFi - AES-128-ECB encrypted JSON over UDP port 7000 |
 | **Connectivity** | Local network only, no cloud |
 
 ## Installation
@@ -88,9 +92,9 @@ The integration validates connectivity by connecting to the device, reading its 
 | **Sensor** | Temperature | temperature | Ambient temperature (°C) |
 | **Sensor** | PM2.5 quality | enum | PM2.5 level: excellent / good / bad |
 | **Sensor** | Air quality | enum | Overall air quality: excellent / good / bad |
-| **Sensor** | Timer | — | Active timer (hours) |
-| **Sensor** | Error code | — | Device error code (diagnostic) |
-| **Sensor** | Filter status | — | Filter status (diagnostic) |
+| **Sensor** | Timer | - | Active timer (hours) |
+| **Sensor** | Error code | - | Device error code (diagnostic) |
+| **Sensor** | Filter status | - | Filter status (diagnostic) |
 | **Binary Sensor** | Water full | problem | Water tank full warning |
 
 ### Controls
@@ -108,10 +112,10 @@ The integration validates connectivity by connecting to the device, reading its 
 
 ## Technical Details
 
-- **Communication:** Gree WiFi protocol via [polperro](https://github.com/hypercubian/lexent-polperro-py) — local UDP, AES-128-ECB encrypted
+- **Communication:** Gree WiFi protocol via [polperro](https://github.com/hypercubian/lexent-polperro-py) - local UDP, AES-128-ECB encrypted
 - **Connection:** Bind handshake on connect, automatic reconnection on errors
 - **Polling:** 30-second update interval via `DataUpdateCoordinator`
-- **Library:** [lexent-polperro-py](https://github.com/hypercubian/lexent-polperro-py) — async Python client for the Polperro dehumidifier
+- **Library:** [lexent-polperro-py](https://github.com/hypercubian/lexent-polperro-py) - async Python client for the Polperro dehumidifier
 
 ## Contributing
 
