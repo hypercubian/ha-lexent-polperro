@@ -9,7 +9,11 @@ from polperro import AirQuality  # type: ignore[attr-defined]
 
 from custom_components.lexent_polperro.const import CONF_HOST, CONF_MAC
 from custom_components.lexent_polperro.coordinator import PolperroCoordinator
-from custom_components.lexent_polperro.sensor import SENSORS, PolperroSensor, async_setup_entry
+from custom_components.lexent_polperro.sensor import (
+    SENSORS,
+    PolperroSensor,
+    async_setup_entry,
+)
 from tests.conftest import _make_device_state
 
 
