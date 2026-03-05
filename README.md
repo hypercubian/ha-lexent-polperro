@@ -4,7 +4,7 @@
 
 <h1 align="center">
   Lexent Polperro Integration<br>
-  for <a href="https://www.home-assistant.io/"><img src="https://brands.home-assistant.io/homeassistant/logo.png" height="28" alt="Home Assistant"></a>
+  for <a href="https://www.home-assistant.io/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://brands.home-assistant.io/homeassistant/dark_logo.png"><img src="https://brands.home-assistant.io/homeassistant/logo.png" height="28" alt="Home Assistant"></picture></a>
 </h1>
 
 <p align="center">
