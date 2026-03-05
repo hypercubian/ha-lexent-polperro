@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+env:
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - run: pip install black isort flake8 flake8-bugbear flake8-comprehensions
+      - run: black --check custom_components/ tests/
+      - run: isort --check-only --settings-path pyproject.toml custom_components/ tests/
+      - run: flake8 custom_components/ --max-line-length 88 --extend-ignore E203,W503 --max-complexity 15
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: pip install pytest pytest-asyncio homeassistant "polpero @ git+https://github.com/hypercubian/lexent-polpero-py.git@v0.1.0"
+      - name: Run unit tests
+        run: pytest tests/unit/ -v
+
+  typecheck:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - name: Install dependencies
+        run: pip install mypy
+      - name: Run mypy
+        run: mypy --config-file pyproject.toml custom_components/
