@@ -2,7 +2,10 @@
   <img src="images/logo.png" alt="Lexent" width="200">
 </p>
 
-<h1 align="center">Lexent Polperro Integration for Home Assistant</h1>
+<h1 align="center">
+  Lexent Polperro Integration<br>
+  for <a href="https://www.home-assistant.io/"><img src="https://brands.home-assistant.io/homeassistant/logo.png" height="28" alt="Home Assistant"></a>
+</h1>
 
 <p align="center">
   <img src="images/polperro-white.png" alt="Lexent Polperro 30L — Gloss White" width="200">
