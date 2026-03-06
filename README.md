@@ -20,7 +20,7 @@
   <a href="https://github.com/hypercubian/ha-lexent-polperro/releases"><img src="https://img.shields.io/github/v/release/hypercubian/ha-lexent-polperro?filter=*&style=for-the-badge" alt="Release"></a>
   <a href="https://github.com/hypercubian/ha-lexent-polperro/releases"><img src="https://img.shields.io/github/downloads/hypercubian/ha-lexent-polperro/total?style=for-the-badge" alt="Downloads"></a>
   <a href="https://github.com/hypercubian/ha-lexent-polperro/stargazers"><img src="https://img.shields.io/github/stars/hypercubian/ha-lexent-polperro?style=for-the-badge" alt="Stars"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/hypercubian/ha-lexent-polperro?style=for-the-badge&cacheSeconds=0" alt="License"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/hypercubian/ha-lexent-polperro?style=for-the-badge" alt="License"></a>
 </p>
 <p align="center">
   <a href="https://hacs.xyz/"><img src="https://img.shields.io/badge/HACS-Custom-41BDF5?style=for-the-badge" alt="HACS Custom"></a>
