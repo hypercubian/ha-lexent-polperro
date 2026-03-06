@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ha-lexent-polperro"
-version = "0.1.0"
+version = "0.1.1"
 description = "Home Assistant HACS integration for the Lexent Polperro 30L dehumidifier"
 license = "MIT"
 authors = []
